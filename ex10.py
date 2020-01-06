@@ -38,11 +38,11 @@ def is_stable_match(match: List[Tuple[int, int]], pref_a: List[List[int]], pref_
 
     """
 
-    for i in range(len(pref_b)):  # for each player in group A
+    for i in range(len(pref_a)):  # for each player in group A
         for j in range(len(pref_b)):  # for each player in group A
             if (i, j) not in match:  # if they are not matched, then we need to check if they are unstable couple
-                match_i = [match for match in match if match[0] == i][0][1]  # the match for i
-                match_j = [match for match in match if match[1] == j][0][0]  # the match for j
+                match_i = [m for m in match if m[0] == i][0][1]  # the match for i
+                match_j = [m for m in match if m[1] == j][0][0]  # the match for j
                 # if i prefers j over what he matched with and j prefers i over what he match with,they are an unstable
                 # couple, thus the match is not stable
                 if pref_a[i][j] > pref_a[i][match_i] and pref_b[j][i] > pref_b[j][match_j]:
